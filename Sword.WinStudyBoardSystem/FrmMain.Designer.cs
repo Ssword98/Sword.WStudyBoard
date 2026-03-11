@@ -32,10 +32,10 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Panel_Top = new System.Windows.Forms.Panel();
             this.LB_LinkText = new System.Windows.Forms.Label();
-            this.Btn_Link = new System.Windows.Forms.Button();
+            this.Btn_Close = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
+            this.Btn_Connect = new System.Windows.Forms.Button();
             this.comboBox5 = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
@@ -44,8 +44,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.Btn_RefreshCom = new System.Windows.Forms.Button();
+            this.CB_ComList = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.uMeter1 = new Zhaoxi.CustControls.UMeter();
@@ -69,7 +69,7 @@
             // Panel_Top
             // 
             this.Panel_Top.Controls.Add(this.LB_LinkText);
-            this.Panel_Top.Controls.Add(this.Btn_Link);
+            this.Panel_Top.Controls.Add(this.Btn_Close);
             this.Panel_Top.Controls.Add(this.label1);
             this.Panel_Top.Controls.Add(this.pictureBox1);
             this.Panel_Top.Dock = System.Windows.Forms.DockStyle.Top;
@@ -96,19 +96,19 @@
             this.LB_LinkText.Text = "连接成功,正在监控学习卡数据信息!";
             this.LB_LinkText.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // Btn_Link
+            // Btn_Close
             // 
-            this.Btn_Link.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.Btn_Close.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Btn_Link.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Btn_Link.Location = new System.Drawing.Point(1047, 17);
-            this.Btn_Link.Margin = new System.Windows.Forms.Padding(2);
-            this.Btn_Link.Name = "Btn_Link";
-            this.Btn_Link.Size = new System.Drawing.Size(65, 35);
-            this.Btn_Link.TabIndex = 2;
-            this.Btn_Link.Text = "关闭";
-            this.Btn_Link.UseVisualStyleBackColor = true;
-            this.Btn_Link.Click += new System.EventHandler(this.Btn_Link_Click);
+            this.Btn_Close.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Btn_Close.Location = new System.Drawing.Point(1047, 17);
+            this.Btn_Close.Margin = new System.Windows.Forms.Padding(2);
+            this.Btn_Close.Name = "Btn_Close";
+            this.Btn_Close.Size = new System.Drawing.Size(65, 35);
+            this.Btn_Close.TabIndex = 2;
+            this.Btn_Close.Text = "关闭";
+            this.Btn_Close.UseVisualStyleBackColor = true;
+            this.Btn_Close.Click += new System.EventHandler(this.Btn_Close_Click);
             // 
             // label1
             // 
@@ -126,7 +126,7 @@
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.panel2.Controls.Add(this.button2);
+            this.panel2.Controls.Add(this.Btn_Connect);
             this.panel2.Controls.Add(this.comboBox5);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.comboBox4);
@@ -135,8 +135,8 @@
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.comboBox2);
             this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.button1);
-            this.panel2.Controls.Add(this.comboBox1);
+            this.panel2.Controls.Add(this.Btn_RefreshCom);
+            this.panel2.Controls.Add(this.CB_ComList);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Location = new System.Drawing.Point(22, 75);
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
@@ -144,14 +144,15 @@
             this.panel2.Size = new System.Drawing.Size(1090, 45);
             this.panel2.TabIndex = 2;
             // 
-            // button2
+            // Btn_Connect
             // 
-            this.button2.Location = new System.Drawing.Point(941, 8);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(80, 30);
-            this.button2.TabIndex = 11;
-            this.button2.Text = "连接设备";
-            this.button2.UseVisualStyleBackColor = true;
+            this.Btn_Connect.Location = new System.Drawing.Point(941, 8);
+            this.Btn_Connect.Name = "Btn_Connect";
+            this.Btn_Connect.Size = new System.Drawing.Size(80, 30);
+            this.Btn_Connect.TabIndex = 11;
+            this.Btn_Connect.Text = "连接设备";
+            this.Btn_Connect.UseVisualStyleBackColor = true;
+            this.Btn_Connect.Click += new System.EventHandler(this.Btn_Connect_Click);
             // 
             // comboBox5
             // 
@@ -221,22 +222,23 @@
             this.label3.TabIndex = 3;
             this.label3.Text = "波特率";
             // 
-            // button1
+            // Btn_RefreshCom
             // 
-            this.button1.Location = new System.Drawing.Point(156, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(70, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "刷新";
-            this.button1.UseVisualStyleBackColor = true;
+            this.Btn_RefreshCom.Location = new System.Drawing.Point(156, 12);
+            this.Btn_RefreshCom.Name = "Btn_RefreshCom";
+            this.Btn_RefreshCom.Size = new System.Drawing.Size(70, 23);
+            this.Btn_RefreshCom.TabIndex = 2;
+            this.Btn_RefreshCom.Text = "刷新";
+            this.Btn_RefreshCom.UseVisualStyleBackColor = true;
+            this.Btn_RefreshCom.Click += new System.EventHandler(this.Btn_RefreshCom_Click);
             // 
-            // comboBox1
+            // CB_ComList
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(50, 14);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(100, 20);
-            this.comboBox1.TabIndex = 1;
+            this.CB_ComList.FormattingEnabled = true;
+            this.CB_ComList.Location = new System.Drawing.Point(50, 14);
+            this.CB_ComList.Name = "CB_ComList";
+            this.CB_ComList.Size = new System.Drawing.Size(100, 20);
+            this.CB_ComList.TabIndex = 1;
             // 
             // label2
             // 
@@ -262,7 +264,7 @@
             this.uMeter1.CenterElipseColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(155)))), ((int)(((byte)(252)))));
             this.uMeter1.Header = "Temperature";
             this.uMeter1.HeaderColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(1)))), ((int)(((byte)(70)))), ((int)(((byte)(174)))));
-            this.uMeter1.Location = new System.Drawing.Point(32, 33);
+            this.uMeter1.Location = new System.Drawing.Point(33, 55);
             this.uMeter1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.uMeter1.MaxValue = 50;
             this.uMeter1.MinValue = 0;
@@ -270,7 +272,7 @@
             this.uMeter1.PointColor = System.Drawing.Color.Red;
             this.uMeter1.ScaleLineColor = System.Drawing.Color.Gray;
             this.uMeter1.ScaleValueColor = System.Drawing.Color.Gray;
-            this.uMeter1.Size = new System.Drawing.Size(165, 165);
+            this.uMeter1.Size = new System.Drawing.Size(148, 148);
             this.uMeter1.SurroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(33)))), ((int)(((byte)(97)))), ((int)(((byte)(216)))));
             this.uMeter1.TabIndex = 0;
             this.uMeter1.Unit = "℃";
@@ -311,12 +313,12 @@
         private System.Windows.Forms.Panel Panel_Top;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label LB_LinkText;
-        private System.Windows.Forms.Button Btn_Link;
+        private System.Windows.Forms.Button Btn_Close;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox CB_ComList;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button Btn_Connect;
         private System.Windows.Forms.ComboBox comboBox5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox comboBox4;
@@ -325,7 +327,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button Btn_RefreshCom;
         private Zhaoxi.CustControls.UMeter uMeter1;
     }
 }
