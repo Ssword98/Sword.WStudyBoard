@@ -24,9 +24,27 @@ namespace Sword.WinStudyBoardSystem
         private void FrmMain_Load(object sender, EventArgs e)
         {
             Btn_RefreshCom_Click(null, null);
-            //下拉框加载
-
+            //下拉框初始化
+            InitCombox();
         }
+
+        #region 下拉框初始化
+        private void InitCombox()
+        {
+            CB_BaudRate.Items.AddRange(new object[] { "9600", "19200", "38400", "115200" });
+            CB_BaudRate.SelectedIndex = 0;
+            CB_DataBits.Items.AddRange(new object[] { "5", "6", "7", "8" });
+            CB_DataBits.SelectedIndex = 3;
+            CB_Parity.Items.AddRange(Enum.GetNames(typeof(Models.Parity))
+                            .Select(name => Program.GetDescription((Models.Parity)Enum.Parse(typeof(Models.Parity), name)))
+                            .ToArray());
+            CB_Parity.SelectedIndex = 0;
+            CB_StopBits.Items.AddRange(Enum.GetNames(typeof(Models.StopBits))
+                            .Select(name => Program.GetDescription((Models.StopBits)Enum.Parse(typeof(Models.StopBits), name)))
+                            .ToArray());
+            CB_StopBits.SelectedIndex = 1;
+        }
+        #endregion
 
         #region 按钮事件
         private void Btn_Close_Click(object sender, EventArgs e)
