@@ -63,6 +63,33 @@
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.PV_Lines = new OxyPlot.WindowsForms.PlotView();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.LB_Temp_Max = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.LB_Temp_Min = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.CB_Temp_Start = new System.Windows.Forms.CheckBox();
+            this.CB_Humi_Start = new System.Windows.Forms.CheckBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.LB_Humi_Min = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.LB_Humi_Max = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.CB_Bright_Start = new System.Windows.Forms.CheckBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.LB_Bright_Min = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.LB_Bright_Max = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.Panel_Top.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -267,6 +294,33 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.White;
+            this.panel3.Controls.Add(this.CB_Bright_Start);
+            this.panel3.Controls.Add(this.label29);
+            this.panel3.Controls.Add(this.label30);
+            this.panel3.Controls.Add(this.LB_Bright_Min);
+            this.panel3.Controls.Add(this.label32);
+            this.panel3.Controls.Add(this.label33);
+            this.panel3.Controls.Add(this.LB_Bright_Max);
+            this.panel3.Controls.Add(this.label35);
+            this.panel3.Controls.Add(this.CB_Humi_Start);
+            this.panel3.Controls.Add(this.label21);
+            this.panel3.Controls.Add(this.label22);
+            this.panel3.Controls.Add(this.LB_Humi_Min);
+            this.panel3.Controls.Add(this.label25);
+            this.panel3.Controls.Add(this.label26);
+            this.panel3.Controls.Add(this.LB_Humi_Max);
+            this.panel3.Controls.Add(this.label28);
+            this.panel3.Controls.Add(this.CB_Temp_Start);
+            this.panel3.Controls.Add(this.label23);
+            this.panel3.Controls.Add(this.label18);
+            this.panel3.Controls.Add(this.LB_Temp_Min);
+            this.panel3.Controls.Add(this.label20);
+            this.panel3.Controls.Add(this.label17);
+            this.panel3.Controls.Add(this.LB_Temp_Max);
+            this.panel3.Controls.Add(this.label15);
+            this.panel3.Controls.Add(this.label14);
+            this.panel3.Controls.Add(this.label13);
+            this.panel3.Controls.Add(this.label12);
             this.panel3.Controls.Add(this.panel1);
             this.panel3.Controls.Add(this.uMeter3);
             this.panel3.Controls.Add(this.uMeter2);
@@ -297,6 +351,7 @@
             this.Btn_SendText.TabIndex = 5;
             this.Btn_SendText.Text = "发送文本";
             this.Btn_SendText.UseVisualStyleBackColor = true;
+            this.Btn_SendText.Click += new System.EventHandler(this.Btn_SendText_Click);
             // 
             // richTextBox1
             // 
@@ -342,9 +397,9 @@
             // 
             this.uMeter3.CenterColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(62)))), ((int)(((byte)(155)))), ((int)(((byte)(253)))));
             this.uMeter3.CenterElipseColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(155)))), ((int)(((byte)(252)))));
-            this.uMeter3.Header = "Temperature";
+            this.uMeter3.Header = "Brightness";
             this.uMeter3.HeaderColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(1)))), ((int)(((byte)(70)))), ((int)(((byte)(174)))));
-            this.uMeter3.Location = new System.Drawing.Point(473, 38);
+            this.uMeter3.Location = new System.Drawing.Point(564, 38);
             this.uMeter3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.uMeter3.MaxValue = 50;
             this.uMeter3.MinValue = 0;
@@ -364,9 +419,9 @@
             // 
             this.uMeter2.CenterColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(62)))), ((int)(((byte)(155)))), ((int)(((byte)(253)))));
             this.uMeter2.CenterElipseColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(155)))), ((int)(((byte)(252)))));
-            this.uMeter2.Header = "Temperature";
+            this.uMeter2.Header = "Humidity";
             this.uMeter2.HeaderColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(1)))), ((int)(((byte)(70)))), ((int)(((byte)(174)))));
-            this.uMeter2.Location = new System.Drawing.Point(248, 36);
+            this.uMeter2.Location = new System.Drawing.Point(309, 38);
             this.uMeter2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.uMeter2.MaxValue = 50;
             this.uMeter2.MinValue = 0;
@@ -388,7 +443,7 @@
             this.uMeter1.CenterElipseColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(155)))), ((int)(((byte)(252)))));
             this.uMeter1.Header = "Temperature";
             this.uMeter1.HeaderColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(1)))), ((int)(((byte)(70)))), ((int)(((byte)(174)))));
-            this.uMeter1.Location = new System.Drawing.Point(32, 36);
+            this.uMeter1.Location = new System.Drawing.Point(50, 38);
             this.uMeter1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.uMeter1.MaxValue = 50;
             this.uMeter1.MinValue = 0;
@@ -479,6 +534,261 @@
             this.PV_Lines.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
             this.PV_Lines.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.Color.LightGray;
+            this.label12.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label12.Location = new System.Drawing.Point(108, 16);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(32, 17);
+            this.label12.TabIndex = 4;
+            this.label12.Text = "温度";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.Color.LightGray;
+            this.label13.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label13.Location = new System.Drawing.Point(366, 16);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(32, 17);
+            this.label13.TabIndex = 5;
+            this.label13.Text = "湿度";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.BackColor = System.Drawing.Color.LightGray;
+            this.label14.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label14.Location = new System.Drawing.Point(622, 16);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(32, 17);
+            this.label14.TabIndex = 6;
+            this.label14.Text = "亮度";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(43, 198);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(64, 17);
+            this.label15.TabIndex = 7;
+            this.label15.Text = "[历史最高]";
+            // 
+            // LB_Temp_Max
+            // 
+            this.LB_Temp_Max.AutoSize = true;
+            this.LB_Temp_Max.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.LB_Temp_Max.Location = new System.Drawing.Point(123, 198);
+            this.LB_Temp_Max.Name = "LB_Temp_Max";
+            this.LB_Temp_Max.Size = new System.Drawing.Size(27, 19);
+            this.LB_Temp_Max.TabIndex = 8;
+            this.LB_Temp_Max.Text = "66";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(178, 198);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(20, 17);
+            this.label17.TabIndex = 9;
+            this.label17.Text = "℃";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(178, 234);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(20, 17);
+            this.label18.TabIndex = 12;
+            this.label18.Text = "℃";
+            // 
+            // LB_Temp_Min
+            // 
+            this.LB_Temp_Min.AutoSize = true;
+            this.LB_Temp_Min.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.LB_Temp_Min.Location = new System.Drawing.Point(123, 234);
+            this.LB_Temp_Min.Name = "LB_Temp_Min";
+            this.LB_Temp_Min.Size = new System.Drawing.Size(27, 19);
+            this.LB_Temp_Min.TabIndex = 11;
+            this.LB_Temp_Min.Text = "66";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(43, 234);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(64, 17);
+            this.label20.TabIndex = 10;
+            this.label20.Text = "[历史最低]";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(43, 271);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(64, 17);
+            this.label23.TabIndex = 13;
+            this.label23.Text = "[启用模拟]";
+            // 
+            // CB_Temp_Start
+            // 
+            this.CB_Temp_Start.AutoSize = true;
+            this.CB_Temp_Start.Location = new System.Drawing.Point(181, 271);
+            this.CB_Temp_Start.Name = "CB_Temp_Start";
+            this.CB_Temp_Start.Size = new System.Drawing.Size(15, 14);
+            this.CB_Temp_Start.TabIndex = 14;
+            this.CB_Temp_Start.UseVisualStyleBackColor = true;
+            // 
+            // CB_Humi_Start
+            // 
+            this.CB_Humi_Start.AutoSize = true;
+            this.CB_Humi_Start.Location = new System.Drawing.Point(444, 271);
+            this.CB_Humi_Start.Name = "CB_Humi_Start";
+            this.CB_Humi_Start.Size = new System.Drawing.Size(15, 14);
+            this.CB_Humi_Start.TabIndex = 22;
+            this.CB_Humi_Start.UseVisualStyleBackColor = true;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(306, 271);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(64, 17);
+            this.label21.TabIndex = 21;
+            this.label21.Text = "[启用模拟]";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(441, 234);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(20, 17);
+            this.label22.TabIndex = 20;
+            this.label22.Text = "℃";
+            // 
+            // LB_Humi_Min
+            // 
+            this.LB_Humi_Min.AutoSize = true;
+            this.LB_Humi_Min.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.LB_Humi_Min.Location = new System.Drawing.Point(386, 234);
+            this.LB_Humi_Min.Name = "LB_Humi_Min";
+            this.LB_Humi_Min.Size = new System.Drawing.Size(27, 19);
+            this.LB_Humi_Min.TabIndex = 19;
+            this.LB_Humi_Min.Text = "66";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(306, 234);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(64, 17);
+            this.label25.TabIndex = 18;
+            this.label25.Text = "[历史最低]";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(441, 198);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(20, 17);
+            this.label26.TabIndex = 17;
+            this.label26.Text = "℃";
+            // 
+            // LB_Humi_Max
+            // 
+            this.LB_Humi_Max.AutoSize = true;
+            this.LB_Humi_Max.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.LB_Humi_Max.Location = new System.Drawing.Point(386, 198);
+            this.LB_Humi_Max.Name = "LB_Humi_Max";
+            this.LB_Humi_Max.Size = new System.Drawing.Size(27, 19);
+            this.LB_Humi_Max.TabIndex = 16;
+            this.LB_Humi_Max.Text = "66";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(306, 198);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(64, 17);
+            this.label28.TabIndex = 15;
+            this.label28.Text = "[历史最高]";
+            // 
+            // CB_Bright_Start
+            // 
+            this.CB_Bright_Start.AutoSize = true;
+            this.CB_Bright_Start.Location = new System.Drawing.Point(699, 271);
+            this.CB_Bright_Start.Name = "CB_Bright_Start";
+            this.CB_Bright_Start.Size = new System.Drawing.Size(15, 14);
+            this.CB_Bright_Start.TabIndex = 30;
+            this.CB_Bright_Start.UseVisualStyleBackColor = true;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(561, 271);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(64, 17);
+            this.label29.TabIndex = 29;
+            this.label29.Text = "[启用模拟]";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(696, 234);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(20, 17);
+            this.label30.TabIndex = 28;
+            this.label30.Text = "℃";
+            // 
+            // LB_Bright_Min
+            // 
+            this.LB_Bright_Min.AutoSize = true;
+            this.LB_Bright_Min.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.LB_Bright_Min.Location = new System.Drawing.Point(641, 234);
+            this.LB_Bright_Min.Name = "LB_Bright_Min";
+            this.LB_Bright_Min.Size = new System.Drawing.Size(27, 19);
+            this.LB_Bright_Min.TabIndex = 27;
+            this.LB_Bright_Min.Text = "66";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(561, 234);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(64, 17);
+            this.label32.TabIndex = 26;
+            this.label32.Text = "[历史最低]";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(696, 198);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(20, 17);
+            this.label33.TabIndex = 25;
+            this.label33.Text = "℃";
+            // 
+            // LB_Bright_Max
+            // 
+            this.LB_Bright_Max.AutoSize = true;
+            this.LB_Bright_Max.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.LB_Bright_Max.Location = new System.Drawing.Point(641, 198);
+            this.LB_Bright_Max.Name = "LB_Bright_Max";
+            this.LB_Bright_Max.Size = new System.Drawing.Size(27, 19);
+            this.LB_Bright_Max.TabIndex = 24;
+            this.LB_Bright_Max.Text = "66";
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(561, 198);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(64, 17);
+            this.label35.TabIndex = 23;
+            this.label35.Text = "[历史最高]";
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -503,12 +813,14 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Modbus学习卡监控系统";
             this.Load += new System.EventHandler(this.FrmMain_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.FrmMain_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.Panel_Top.ResumeLayout(false);
             this.Panel_Top.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -552,6 +864,33 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button Btn_SendText;
         private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label LB_Temp_Max;
+        private System.Windows.Forms.CheckBox CB_Temp_Start;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label LB_Temp_Min;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.CheckBox CB_Bright_Start;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label LB_Bright_Min;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.Label LB_Bright_Max;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.CheckBox CB_Humi_Start;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label LB_Humi_Min;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label LB_Humi_Max;
+        private System.Windows.Forms.Label label28;
     }
 }
 
