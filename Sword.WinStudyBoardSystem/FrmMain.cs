@@ -9,6 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using OxyPlot;
+using OxyPlot.Axes;
 
 namespace Sword.WinStudyBoardSystem
 {
@@ -17,10 +19,8 @@ namespace Sword.WinStudyBoardSystem
         // 窗口拖动相关变量
         private bool _isDragging = false;
         private Point _offset;
-        // 边框宽度（可自定义）
-        private readonly int _borderWidth = 1;
-        // 圆角半径（可自定义）
-        private readonly int _cornerRadius = 10;
+
+        SerialPort serialPort;//串口对象
 
         public FrmMain()
         {
@@ -30,50 +30,206 @@ namespace Sword.WinStudyBoardSystem
             this.SetStyle(ControlStyles.UserPaint |
                           ControlStyles.AllPaintingInWmPaint |
                           ControlStyles.OptimizedDoubleBuffer, true);
-        }
 
-        private void FrmMain_Load(object sender, EventArgs e)
-        {
-            Btn_RefreshCom_Click(null, null);
+            serialPort = new SerialPort();
+            RefreshComList(); //刷新串口列表
             //下拉框初始化
             InitCombox();
         }
 
+        #region 界面初始化
+        private void FrmMain_Load(object sender, EventArgs e)
+        {
+            //页面信息初始化
+            InitFormInfo();
+            //图表初始化
+            InitPlot();
+        }
+
+        private void InitFormInfo()
+        {
+            //仪表值重置
+            umTemperature.Value = 0;
+            umHumidity.Value = 0;
+            umBrightness.Value = 0;
+            //历史值重置
+            LB_Temp_Max.Text = "0.0";
+            LB_Temp_Min.Text = "0.0";
+            CB_Temp_Start.Checked = false;
+            LB_Humi_Max.Text = "0";
+            LB_Humi_Min.Text = "0";
+            CB_Humi_Start.Checked = false;
+            LB_Bright_Max.Text = "0";
+            LB_Bright_Min.Text = "0";
+            CB_Bright_Start.Checked = false;
+            //曲线显示状态为true
+            cb_Line_Temp.Checked = true;
+            cb_Line_Humi.Checked = true;
+            CB_Line_Bright.Checked = true;
+            //消息显示区重置
+            txt_ShowMsg.Text = "";
+            txt_SendMsg.Text = "";
+            //状态显示重置
+            chkState_01.Checked = false;
+            chkState_02.Checked = false;
+            chkState_03.Checked = false;
+            chkState_04.Checked = false;
+            chkState_05.Checked = false;
+            chkState_All.Checked = false;
+            //连接状态默认
+            LB_LinkText.Text = "等待学习卡连接";
+            Btn_Connect.Text = "连接设备";
+        }
+
+        PlotModel plotModel=null; //图表模型
+        DateTimeAxis dateTimeAxis; //时间轴
+        LinearAxis valueAxis; //数值轴
+        Random random = new Random();
+        private void InitPlot()
+        {
+            plotModel = new PlotModel()
+            {
+                IsLegendVisible = false,
+                PlotAreaBorderColor = OxyColors.LightGray,
+                PlotAreaBackground = OxyColors.White
+            };
+            //时间轴
+            dateTimeAxis = new DateTimeAxis()
+            {
+                MajorGridlineStyle = LineStyle.Dash,
+                MajorGridlineThickness = 0,
+                IntervalLength = 5,
+                IntervalType = DateTimeIntervalType.Seconds,
+                FontSize = 10,
+                TextColor = OxyColors.Gray,
+                IsPanEnabled = false,
+                IsZoomEnabled = false,
+                AxislineColor = OxyColors.LightGray,
+                StringFormat = "mm:ss"
+            };
+            plotModel.Axes.Add(dateTimeAxis);
+            //数值轴
+            valueAxis = new LinearAxis()
+            {
+                MajorGridlineStyle = LineStyle.Dash,
+                IntervalLength = 20,
+                IsPanEnabled = false,
+                IsZoomEnabled = false,
+                Maximum = 110,
+                Minimum = -20,
+                FontSize= 10,
+                TextColor= OxyColors.Gray,
+                AxislineColor= OxyColors.LightGray,
+            };
+            plotModel.Axes.Add(valueAxis);
+
+            //添加3条曲线
+            var seriesTemp = new OxyPlot.Series.LineSeries()
+            {
+                Color = OxyColors.OrangeRed,
+                StrokeThickness = 1,
+                MarkerType = MarkerType.None,
+                Title = "温度",
+                InterpolationAlgorithm = InterpolationAlgorithms.CanonicalSpline
+            };
+            var seriesHumi = new OxyPlot.Series.LineSeries()
+            {
+                Color = OxyColors.DeepSkyBlue,
+                StrokeThickness = 1,
+                MarkerType = MarkerType.None,
+                Title = "湿度",
+                InterpolationAlgorithm = InterpolationAlgorithms.CanonicalSpline
+            };
+            var seriesBright = new OxyPlot.Series.LineSeries()
+            {
+                Color = OxyColors.Orange,
+                StrokeThickness = 1,
+                MarkerType = MarkerType.None,
+                Title = "亮度",
+                InterpolationAlgorithm = InterpolationAlgorithms.CanonicalSpline
+            };
+            DateTime dateTime = DateTime.Now.AddSeconds(-20);
+            plotModel.Axes[0].Minimum = DateTimeAxis.ToDouble(dateTime);
+            for (int i = 0; i < 20; i++)
+            {
+                dateTime = dateTime.AddSeconds(1);
+                seriesTemp.Points.Add(new OxyPlot.DataPoint(DateTimeAxis.ToDouble(dateTime), random.Next(0,100)));
+                seriesHumi.Points.Add(new OxyPlot.DataPoint(DateTimeAxis.ToDouble(dateTime), random.Next(0, 100)));
+                seriesBright.Points.Add(new OxyPlot.DataPoint(DateTimeAxis.ToDouble(dateTime), random.Next(0, 100)));
+                
+            }
+            plotModel.Axes[0].Maximum = DateTimeAxis.ToDouble(dateTime);
+            plotModel.Series.Add(seriesTemp);
+            plotModel.Series.Add(seriesHumi);
+            plotModel.Series.Add(seriesBright);
+
+            PV_Lines.Model = plotModel;
+        }
+        #endregion
+
+
         #region 下拉框初始化
         private void InitCombox()
         {
+            //波特率
+            CB_BaudRate.Items.Clear();
             CB_BaudRate.Items.AddRange(new object[] { "9600", "19200", "38400", "115200" });
             CB_BaudRate.SelectedIndex = 0;
+            //数据位
+            CB_DataBits.Items.Clear();
             CB_DataBits.Items.AddRange(new object[] { "5", "6", "7", "8" });
             CB_DataBits.SelectedIndex = 3;
+            //校验位
+            CB_Parity.Items.Clear();
             CB_Parity.Items.AddRange(Enum.GetNames(typeof(Models.Parity))
                             .Select(name => Program.GetDescription((Models.Parity)Enum.Parse(typeof(Models.Parity), name)))
                             .ToArray());
             CB_Parity.SelectedIndex = 0;
+            //停止位
+            CB_StopBits.Items.Clear();
             CB_StopBits.Items.AddRange(Enum.GetNames(typeof(Models.StopBits))
                             .Select(name => Program.GetDescription((Models.StopBits)Enum.Parse(typeof(Models.StopBits), name)))
                             .ToArray());
             CB_StopBits.SelectedIndex = 1;
         }
-        #endregion
 
-        #region 按钮事件
-        private void Btn_Close_Click(object sender, EventArgs e)
+        private void RefreshComList()
         {
-            if(MessageBox.Show("确定要退出吗？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            string currentSelection = CB_ComList.SelectedItem?.ToString();
+            //刷新串口
+            CB_ComList.Items.Clear();
+            string[] ports = SerialPort.GetPortNames();
+            if (ports.Length > 0)
             {
-                this.Close();
+                CB_ComList.Items.AddRange(ports);
+                if (!string.IsNullOrEmpty(currentSelection) && ports.Contains(currentSelection))
+                {
+                    CB_ComList.SelectedItem = currentSelection;
+                }
+                else
+                {
+                    CB_ComList.SelectedIndex = 0;
+                }
+            }
+            else
+            {
+                CB_ComList.Items.Add("无可用串口");
+                CB_ComList.SelectedIndex = 0;
             }
         }
+        #endregion
 
-        private void Btn_Connect_Click(object sender, EventArgs e)
+        #region 边框绘制
+        private void FrmMain_Paint(object sender, PaintEventArgs e)
         {
-
+            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+            e.Graphics.DrawRectangle(Pens.LightGray, 1, 1, this.Width - 2, this.Height - 2);
         }
 
-        private void Btn_SendText_Click(object sender, EventArgs e)
+        private void PNL_Mid_Paint(object sender, PaintEventArgs e)
         {
-
+            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+            e.Graphics.DrawRectangle(Pens.LightGray, 0, 0, e.ClipRectangle.Width - 1, e.ClipRectangle.Height - 1);
         }
         #endregion
 
@@ -104,86 +260,31 @@ namespace Sword.WinStudyBoardSystem
         }
         #endregion
 
+        #region 按钮事件
+        private void Btn_Close_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("确定要退出吗？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                this.Close();
+            }
+        }
+
+        private void Btn_Connect_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Btn_SendText_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void Btn_RefreshCom_Click(object sender, EventArgs e)
         {
-            string currentSelection = CB_ComList.SelectedItem?.ToString();
-            //刷新串口
-            CB_ComList.Items.Clear();
-
-            string[] ports = SerialPort.GetPortNames();
-            if (ports.Length > 0)
-            {
-                CB_ComList.Items.AddRange(ports);
-
-                if (!string.IsNullOrEmpty(currentSelection) && ports.Contains(currentSelection))
-                {
-                    CB_ComList.SelectedItem = currentSelection;
-                }
-                else
-                {
-                    CB_ComList.SelectedIndex = 0;
-                }
-            }
-            else
-            {
-                CB_ComList.Items.Add("无可用串口");
-                CB_ComList.SelectedIndex = 0;
-            }
+            RefreshComList();
         }
+        #endregion
 
-        private void FrmMain_Paint(object sender, PaintEventArgs e)
-        {
-            // 不在事件处理器中调用 base.OnPaint(e) —— 这会触发 Paint 事件并可能导致递归
-            Graphics g = e.Graphics;
-            // 抗锯齿，让边框/圆角更平滑
-            g.SmoothingMode = SmoothingMode.AntiAlias;
 
-            // 计算用于绘制的矩形（按边框宽度做内缩，避免被截断）
-            Rectangle rect = new Rectangle(_borderWidth / 2,
-                                           _borderWidth / 2,
-                                           Math.Max(0, this.ClientSize.Width - _borderWidth),
-                                           Math.Max(0, this.ClientSize.Height - _borderWidth));
-
-            using (Pen borderPen = new Pen(Color.FromArgb(51, 153, 255), _borderWidth))
-            using (GraphicsPath path = CreateRoundedRectanglePath(rect, _cornerRadius))
-            {
-                g.DrawPath(borderPen, path);
-            }
-        }
-
-        // Helper: create a rounded rectangle path
-        private GraphicsPath CreateRoundedRectanglePath(Rectangle rect, int radius)
-        {
-            GraphicsPath path = new GraphicsPath();
-            if (radius <= 0)
-            {
-                path.AddRectangle(rect);
-                path.CloseFigure();
-                return path;
-            }
-
-            int diameter = radius * 2;
-            Size size = new Size(diameter, diameter);
-
-            Rectangle arc = new Rectangle(rect.Location, size);
-
-            // top-left arc
-            path.AddArc(arc, 180, 90);
-
-            // top-right arc
-            arc.X = rect.Right - diameter;
-            path.AddArc(arc, 270, 90);
-
-            // bottom-right arc
-            arc.Y = rect.Bottom - diameter;
-            path.AddArc(arc, 0, 90);
-
-            // bottom-left arc
-            arc.X = rect.Left;
-            path.AddArc(arc, 90, 90);
-
-            path.CloseFigure();
-            return path;
-        }
     }
 }

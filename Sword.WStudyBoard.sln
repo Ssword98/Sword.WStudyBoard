@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
-VisualStudioVersion = 18.0.11217.181 d18.0
+VisualStudioVersion = 18.0.11217.181
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sword.WinStudyBoardSystem", "Sword.WinStudyBoardSystem\Sword.WinStudyBoardSystem.csproj", "{87E57E1A-3329-4B87-9654-C222D0D4E03A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sword.WpfStudyBoardSystem", "Sword.WpfStudyBoardSystem\Sword.WpfStudyBoardSystem.csproj", "{2F7FF199-AA82-4095-B39C-37466FF78E09}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +15,6 @@ Global
 		{87E57E1A-3329-4B87-9654-C222D0D4E03A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{87E57E1A-3329-4B87-9654-C222D0D4E03A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{87E57E1A-3329-4B87-9654-C222D0D4E03A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2F7FF199-AA82-4095-B39C-37466FF78E09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2F7FF199-AA82-4095-B39C-37466FF78E09}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2F7FF199-AA82-4095-B39C-37466FF78E09}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2F7FF199-AA82-4095-B39C-37466FF78E09}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

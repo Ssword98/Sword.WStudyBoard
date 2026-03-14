@@ -69,7 +69,9 @@
     <Reference Include="OxyPlot.WindowsForms, Version=2.2.0.0, Culture=neutral, PublicKeyToken=245eacd6b5d2d338, processorArchitecture=MSIL">
       <HintPath>..\packages\OxyPlot.WindowsForms.2.2.0\lib\net462\OxyPlot.WindowsForms.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -81,7 +83,7 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Zhaoxi.CustControls">
-      <HintPath>..\..\..\..\学习笔记\上位机学习\Modbus智能交互学习卡大屏看板-项目实战\Winform监控实战-详细视频教程-31P完整版\Zhaoxi.CustControls.dll</HintPath>
+      <HintPath>..\..\..\..\..\学习笔记\R31-2024年6月录制-Modbus智能交互学习卡大屏看板-项目实战-资料分享-VIP\Winform监控实战-详细视频教程-31P完整版\Zhaoxi.CustControls.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
